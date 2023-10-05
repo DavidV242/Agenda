@@ -1,0 +1,1 @@
+console.log('Mi mamá es la mejor para todo')
