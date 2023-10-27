@@ -15,7 +15,24 @@ class UserService {
         return user
     }
 
-    
+    async findOne(id){
+        const user = await this.model.findByPk(id)
+        return user
+    }
+
+    async update(id, values){
+        const user = await this.findOne(id)
+        if(!user) return null
+        const updateUser = await user.update(values)
+        return updateUser
+    }
+
+    async delete(id){
+        const user = await this.findOne(id)
+        if(!user) return null
+        await user.destroy() 
+        return user.id
+    }
 }
 
 module.exports = UserService
