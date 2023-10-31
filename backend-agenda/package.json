@@ -6,12 +6,13 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "migrations:generate":"sequelize-cli migration:generate --name"
+    "migrations:generate": "sequelize-cli migration:generate --name"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "4.18.2",
     "mysql2": "3.6.1",

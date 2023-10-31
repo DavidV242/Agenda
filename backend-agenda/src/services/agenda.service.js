@@ -18,7 +18,7 @@ const { models } = require("./../libs/sequelize");
       user,
       place,
       status,
-    });
+  });
     return agenda;
   }
 
