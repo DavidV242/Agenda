@@ -2,7 +2,7 @@ const { models } = require("./../libs/sequelize");
 
 class AreaService {
   constructor() {
-    this.model = models.User;
+    this.model = models.Area;
   }
 
   async getAll() {
