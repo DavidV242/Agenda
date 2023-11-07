@@ -1,31 +1,32 @@
 import React, {useState} from 'react'
 import { Form, Modal, Button, Alert } from 'react-bootstrap'
-import createUser from './../../../services/users/create'
+import createArea from './../../../services/areas/create'
+
 
 function Create({show, onClose}){
     const [showAlert, setShowAlert] = useState(false)
-    const [user, setUser] = useState({
-        name: '',
-        email: '',
-        password: '',
+    const [area, setArea] = useState({
+        areaCode: '', 
+        areaName: '', 
+        observations: '',
         status: true,
     })
 
     const handleClose = () => {
-        onClose(user)
+        onClose(area)
     }
 
     const handleSubmit = async () => {
         try{
-            const response = await createUser(user)
+            const response = await createArea(area)
             console.log(response)
             setShowAlert(true)
             window.location.reload()
-            setUser({
-                name: '',
-            email: '',
-            password: '',
-            status: true,
+            setArea({
+                areaCode: '', 
+                areaName: '', 
+                observations: '',
+                status: true,
             });
             setTimeout(() => {
                 setShowAlert(false)
@@ -38,7 +39,7 @@ function Create({show, onClose}){
     const handleChange = (event) => {
         const {name, value} = event.target
 
-        setUser((storedUser) => {
+        setArea((storedUser) => {
             return {
                 ...storedUser,
                 [name]: value
@@ -49,7 +50,7 @@ function Create({show, onClose}){
     const handleChangeCheckBox = (event) => {
         const {name, checked} = event.target
 
-        setUser({...user, [name]: checked})
+        setArea({...area, [name]: checked})
     }
 
     return(
@@ -62,22 +63,22 @@ function Create({show, onClose}){
             <Modal.Body>
                 <Form>
                     <Form.Group>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control type= "text" placeholder='User name' name='name' onChange={handleChange}
-                        value={user.name}></Form.Control>
+                        <Form.Label>AreaCode</Form.Label>
+                        <Form.Control type= "text" placeholder='Area Code' name='areaCode' onChange={handleChange}
+                        value={area.areaCode}></Form.Control>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type= "email" placeholder='user@email.com' name='email' onChange={handleChange}
-                        value={user.email}></Form.Control>
+                        <Form.Label>AreaName</Form.Label>
+                        <Form.Control type= "text" placeholder='Area Name' name='areaName' onChange={handleChange}
+                        value={area.areaName}></Form.Control>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type= "password" placeholder='Password User' name='password' onChange={handleChange}
-                        value={user.password}></Form.Control>
+                        <Form.Label>Observations</Form.Label>
+                        <Form.Control type= "text" placeholder='Observations' name='observations' onChange={handleChange}
+                        value={area.observations}></Form.Control>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Check type="checkbox" name="status" label= 'Activo' onChange={handleChangeCheckBox} checked = {user.status}></Form.Check>
+                        <Form.Check type="checkbox" name="status" label= 'Activo' onChange={handleChangeCheckBox} checked = {area.status}></Form.Check>
                     </Form.Group>
                 </Form>
                 {showAlert && <Alert variant='success'>
